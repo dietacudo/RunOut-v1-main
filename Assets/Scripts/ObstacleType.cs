@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
 public class ObstacleType : MonoBehaviour
 {
-    public string requiredAction; // "Jump" lub "Slide"
+    public string requiredAction; // Możliwe wartości: "Jump", "Slide"
 }

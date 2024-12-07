@@ -1,18 +1,26 @@
 using UnityEngine;
 using TMPro; // Import TextMeshPro
 
-public class ObstacleInteraction : MonoBehaviour
+public class ObstacleSlideInteraction : MonoBehaviour
 {
     public TextMeshPro buttonPromptText; // Zmieniamy na TextMeshPro (dla 3D)
     public float reactionTime = 2f; // Czas na reakcję w sekundach
     private float timer; // Licznik czasu
     private string currentPrompt; // Aktualnie wyświetlany przycisk
     private bool isNearObstacle = false; // Czy gracz jest blisko przeszkody
-    private Rigidbody2D playerRb; // Rigidbody gracza, potrzebne do skoku
-    public float jumpForce = 10f; // Siła skoku
+    private Rigidbody2D playerRb; // Rigidbody gracza, potrzebne do wślizgu
+    public float slideForce = 5f; // Siła wślizgu
 
     private Animator playerAnimator; // Referencja do Animatora gracza
-    private bool hasJumped = false; // Zapobiega podwójnym skokom
+    private bool hasSlid = false; // Zapobiega wielokrotnym wślizgom
+
+    private CapsuleCollider2D playerCollider; // Kolider gracza (CapsuleCollider2D)
+    public float reducedHeight = 0.5f; // Zmniejszenie wysokości kolidera podczas wślizgu
+    public float reducedOffset = 0.25f; // Offset do dopasowania kolidera w dół
+    private Vector2 originalColliderSize; // Oryginalny rozmiar kolidera
+    private Vector2 originalColliderOffset; // Oryginalny offset kolidera
+
+    public float resetTime = 1f; // Czas po wślizgu, po którym kolider wraca do oryginalnych rozmiarów
 
     void Start()
     {
@@ -20,6 +28,11 @@ public class ObstacleInteraction : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player"); // Znajdź gracza
         playerRb = player.GetComponent<Rigidbody2D>(); // Pobierz Rigidbody gracza
         playerAnimator = player.GetComponent<Animator>(); // Pobierz Animator gracza
+        playerCollider = player.GetComponent<CapsuleCollider2D>(); // Pobierz CapsuleCollider2D gracza
+
+        // Zapisz oryginalny rozmiar i offset kolidera
+        originalColliderSize = playerCollider.size;
+        originalColliderOffset = playerCollider.offset;
     }
 
     void Update()
@@ -28,11 +41,11 @@ public class ObstacleInteraction : MonoBehaviour
         {
             timer -= Time.deltaTime; // Zmniejszanie czasu
 
-            if (timer <= 0f && !hasJumped) // Jeśli czas minął, a gracz nie wykonał skoku
+            if (timer <= 0f && !hasSlid) // Jeśli czas minął, a gracz nie wykonał wślizgu
             {
                 buttonPromptText.gameObject.SetActive(false); // Ukryj przycisk
                 isNearObstacle = false;
-                hasJumped = false; // Resetuje flagę
+                hasSlid = false; // Resetuje flagę
                 // Możesz dodać inne konsekwencje np. uderzenie w przeszkodę
             }
 
@@ -44,7 +57,7 @@ public class ObstacleInteraction : MonoBehaviour
                 (currentPrompt == "S" && Input.GetKeyDown(KeyCode.S)) ||
                 (currentPrompt == "D" && Input.GetKeyDown(KeyCode.D)))
             {
-                PerformJump(); // Gracz nacisnął przycisk na czas
+                PerformSlide(); // Gracz nacisnął przycisk na czas
             }
         }
     }
@@ -68,25 +81,39 @@ public class ObstacleInteraction : MonoBehaviour
 
     private void ShowButtonPrompt(string prompt)
     {
-        buttonPromptText.text = "Press " + prompt + " to jump!"; // Nowy format tekstu
+        buttonPromptText.text = "Press " + prompt + " to slide!"; // Zmieniony komunikat na "slide"
         buttonPromptText.gameObject.SetActive(true); // Pokazanie przycisku
     }
 
-    private void PerformJump()
+    private void PerformSlide()
     {
-        if (hasJumped) return; // Zapobieganie wielokrotnemu skokowi
-        hasJumped = true; // Ustaw flagę skoku
+        if (hasSlid) return; // Zapobieganie wielokrotnemu wślizgowi
+        hasSlid = true; // Ustaw flagę wślizgu
         buttonPromptText.gameObject.SetActive(false); // Ukrycie przycisku
         isNearObstacle = false; // Gracz wykonał akcję
 
-        // Wyzwól animację skoku
+        // Wyzwól animację wślizgu
         if (playerAnimator != null)
         {
-            playerAnimator.SetTrigger("Jump");
+            playerAnimator.SetTrigger("Slide");
         }
 
-        // Skok za pomocą Rigidbody2D
+        // Zmiana kolidera na mniejszy podczas wślizgu
+        playerCollider.size = new Vector2(originalColliderSize.x, reducedHeight); // Zmniejsz wysokość
+        playerCollider.offset = new Vector2(originalColliderOffset.x, reducedOffset); // Dopasuj offset w dół (przesunięcie górnej części kolidera)
+
+        // Wślizg za pomocą Rigidbody2D
         playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0); // Ustalamy prędkość pionową na 0
-        playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Dodajemy siłę w górę
+        playerRb.AddForce(Vector2.right * slideForce, ForceMode2D.Impulse); // Dodajemy siłę w prawo
+
+        // Przywrócenie kolidera do oryginalnych rozmiarów po czasie
+        Invoke("ResetCollider", resetTime); // Przywrócenie kolidera po upływie czasu
+    }
+
+    // Przywrócenie kolidera do oryginalnych rozmiarów
+    private void ResetCollider()
+    {
+        playerCollider.size = originalColliderSize;
+        playerCollider.offset = originalColliderOffset;
     }
 }
