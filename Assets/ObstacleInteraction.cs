@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using TMPro; // Importujemy TextMeshPro dla 3D
 
@@ -89,7 +88,5 @@ public class ObstacleInteraction : MonoBehaviour
         // Skok za pomocą Rigidbody2D
         playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0); // Ustalamy prędkość pionową na 0
         playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Dodajemy siłę w górę
-
-        Debug.Log("Gracz przeskoczył przeszkodę!");
     }
 }

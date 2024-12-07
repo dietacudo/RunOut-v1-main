@@ -13,10 +13,7 @@ public class WallClimbMessage : MonoBehaviour
         {
             climbMessage.enabled = false;
         }
-        else
-        {
-            Debug.LogError("Brak przypisanego obiektu TextMeshProUGUI w inspektorze!");
-        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

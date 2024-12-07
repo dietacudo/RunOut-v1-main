@@ -12,7 +12,7 @@ public class PlayerControllerV2 : MonoBehaviour
     public float groundCheckRadius = 0.2f;  // Promień sprawdzania ziemi
     public LayerMask groundLayer;     // Warstwa ziemi
 
-    private float currentMoveSpeed = 0f; // <--- Ta linia musi być tutaj
+    private float currentMoveSpeed = 0f; // Aktualna prędkość ruchu
     public float CurrentMoveSpeed => currentMoveSpeed; // Właściwość tylko do odczytu
 
     private Rigidbody2D rb;
@@ -26,6 +26,10 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentMoveSpeed = 0f; // Na początku postać jest nieruchoma
+
+        // Ustawienia Rigidbody2D dla poprawnych kolizji
+        rb.gravityScale = 3f; // Ustawiona siła grawitacji
+        rb.freezeRotation = true; // Zablokowanie rotacji, aby postać się nie przewracała
     }
 
     void Update()
@@ -53,7 +57,7 @@ public class PlayerControllerV2 : MonoBehaviour
             DecaySpeed();
         }
 
-        // Obsługa skoku (możliwość skoku podczas poruszania się)
+        // Obsługa skoku
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
@@ -62,11 +66,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Aktualizuj pozycję postaci w zależności od aktualnej prędkości
+        // Poruszaj gracza w osi X
         if (currentMoveSpeed > 0f)
         {
             Vector2 newVelocity = new Vector2(currentMoveSpeed, rb.linearVelocity.y);
-            rb.linearVelocity = newVelocity; // Zachowaj pionowy ruch (np. skakanie)
+            rb.linearVelocity = newVelocity; // Zastosuj ruch z uwzględnieniem fizyki
         }
     }
 
