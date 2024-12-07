@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using TMPro; // Importujemy TextMeshPro dla 3D
 
@@ -11,10 +12,15 @@ public class ObstacleInteraction : MonoBehaviour
     private Rigidbody2D playerRb; // Rigidbody gracza, potrzebne do skoku
     public float jumpForce = 10f; // Siła skoku
 
+    private Animator playerAnimator; // Referencja do Animatora gracza
+    private bool hasJumped = false; // Zapobiega podwójnym skokom
+
     void Start()
     {
         buttonPromptText.gameObject.SetActive(false); // Na początku przycisk jest ukryty
-        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>(); // Znajdź Rigidbody gracza
+        GameObject player = GameObject.FindWithTag("Player"); // Znajdź gracza
+        playerRb = player.GetComponent<Rigidbody2D>(); // Pobierz Rigidbody gracza
+        playerAnimator = player.GetComponent<Animator>(); // Pobierz Animator gracza
     }
 
     void Update()
@@ -23,11 +29,12 @@ public class ObstacleInteraction : MonoBehaviour
         {
             timer -= Time.deltaTime; // Zmniejszanie czasu
 
-            if (timer <= 0f) // Jeśli czas minął
+            if (timer <= 0f && !hasJumped) // Jeśli czas minął, a gracz nie wykonał skoku
             {
                 buttonPromptText.gameObject.SetActive(false); // Ukryj przycisk
-                isNearObstacle = false; // Gracz przegrał
-                // Można dodać konsekwencje np. uderzenie w przeszkodę
+                isNearObstacle = false;
+                hasJumped = false; // Resetuje flagę
+                // Możesz dodać inne konsekwencje np. uderzenie w przeszkodę
             }
 
             // Sprawdzanie, czy gracz nacisnął odpowiedni przycisk
@@ -43,7 +50,6 @@ public class ObstacleInteraction : MonoBehaviour
         }
     }
 
-    // Funkcja wywoływana, gdy gracz zbliży się do przeszkody
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) // Sprawdzenie, czy to gracz
@@ -55,29 +61,34 @@ public class ObstacleInteraction : MonoBehaviour
         }
     }
 
-    // Funkcja losująca przycisk z grupy Q, W, E, A, S, D
     private string GetRandomButton()
     {
         string[] buttonPrompts = { "Q", "W", "E", "A", "S", "D" }; // Możliwe przyciski
         return buttonPrompts[Random.Range(0, buttonPrompts.Length)];
     }
 
-    // Wyświetlanie losowego przycisku w przestrzeni 3D (nad przeszkodą)
     private void ShowButtonPrompt(string prompt)
     {
         buttonPromptText.text = "Press " + prompt + " to climb!"; // Nowy format tekstu
         buttonPromptText.gameObject.SetActive(true); // Pokazanie przycisku
     }
 
-    // Funkcja wykonująca skok
     private void PerformJump()
     {
+        if (hasJumped) return; // Zapobieganie wielokrotnemu skokowi
+        hasJumped = true; // Ustaw flagę skoku
         buttonPromptText.gameObject.SetActive(false); // Ukrycie przycisku
         isNearObstacle = false; // Gracz wykonał akcję
 
+        // Wyzwól animację skoku
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetTrigger("Jump");
+        }
+
         // Skok za pomocą Rigidbody2D
-        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0); // Ustalamy prędkość pionową na 0, by skok nie był zależny od poprzedniego ruchu
-        playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Dodajemy siłę w górę, aby wykonać skok
+        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0); // Ustalamy prędkość pionową na 0
+        playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Dodajemy siłę w górę
 
         Debug.Log("Gracz przeskoczył przeszkodę!");
     }
