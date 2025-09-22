@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: a9c65414f4388fc4dbb59a00236d938d
+guid: 353529158b406b74ab657b88b49ab5fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3904638479138622021
-    second: Main Menu 1_0
+      213: 8403649000852524
+    second: run_out_logo_0
+  - first:
+      213: -4275474689373584203
+    second: run_out_logo_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main Menu 1_0
+      name: run_out_logo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1000
-        height: 666
+        x: 27
+        y: 40
+        width: 365
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54a01655200103630800000000000000
-      internalID: 3904638479138622021
+      spriteID: c2c4381031bdd1000800000000000000
+      internalID: 8403649000852524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: run_out_logo_1
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 40
+        width: 355
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b4c6b52c667aa4c0800000000000000
+      internalID: -4275474689373584203
       vertices: []
       indices: 
       edges: []
@@ -147,8 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Main Menu 1_0: 3904638479138622021
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

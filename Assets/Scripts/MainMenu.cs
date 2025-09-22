@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // Wpisz nazwę swojej sceny
+        SceneManager.LoadScene("SampleScene"); // Wpisz nazwę swojej sceny
     }
 
     public void OpenOptions()
