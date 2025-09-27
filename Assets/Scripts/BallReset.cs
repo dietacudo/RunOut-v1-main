@@ -8,12 +8,10 @@ public class BallReset : MonoBehaviour
     public TextMeshProUGUI deathCounterText;
 
     private bool gameOver = false;
-    private int deathCount; // licznik śmierci dla bieżącej rozgrywki
+    private static int deathCount = 0; // 🔥 static = nie resetuje się przy zmianie sceny
 
     private void Start()
     {
-        // Reset licznika przy starcie sceny
-        deathCount = 0;
         UpdateDeathCounterUI();
     }
 
@@ -52,5 +50,12 @@ public class BallReset : MonoBehaviour
     private void UpdateDeathCounterUI()
     {
         deathCounterText.text = "Deaths: " + deathCount;
+    }
+
+    // 🔥 Funkcja do resetowania licznika (np. w menu)
+    public void ResetDeathCounter()
+    {
+        deathCount = 0;
+        UpdateDeathCounterUI();
     }
 }
