@@ -357,8 +357,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sterowanie:\n\nLewy/Prawy Shift \u2013 pr\u0119dko\u015B\u0107 ruchu\n\nQ,
-    W, E, A, S, D \u2013 losowe sekwencje\n\nSpacja \u2013 wspinaczka"
+  m_text: "Controls:\n\nLeft/Right Shift \u2013 movement speed\n\nQ, W, E, A, S,
+    D \u2013 random sequences\n\nSpace \u2013 climb"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Naci\u015Bnij SPACJ\u0118, aby kontynuowa\u0107"
+  m_text: Press SPACE to continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
