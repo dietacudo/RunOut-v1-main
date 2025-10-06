@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuTworcy.unity
     guid: 8856ec40e34c7a74a96c3d0c1cfb5c57
   - enabled: 1
+    path: Assets/Scenes/MainMenuLVL.unity
+    guid: 913a8a7d771c886418af7b06e02168a2
+  - enabled: 1
     path: Assets/Scenes/SampleSceneTutrial.unity
     guid: 37dd9883808af564ea797870339787d8
   - enabled: 1
@@ -32,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/10.09/bartek scena.unity
     guid: 16c9418a424422f49bf91b0ff5c52197
+  - enabled: 1
+    path: Assets/LVL3Tutorial.unity
+    guid: d01efb4747900d246b85230aee8407f4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
