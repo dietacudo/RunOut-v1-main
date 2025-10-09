@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL2Tutrial.unity
     guid: edf021c232698b947ac6cec8ac2faf4c
   - enabled: 1
+    path: Assets/Scenes/LVL2.unity
+    guid: c1033e9ebd381ba4ca605d1c21622933
+  - enabled: 1
     path: Assets/10.09/1lvl.unity
     guid: 04fcc95f3eebe9a42a4232f6656a4336
   - enabled: 1

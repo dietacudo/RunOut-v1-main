@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelFinish : MonoBehaviour
+public class LevelFinish2 : MonoBehaviour
 {
     private GameTimer timer;
 
@@ -16,8 +16,8 @@ public class LevelFinish : MonoBehaviour
             if (timer != null)
             {
                 float finalTime = timer.GetFinalTime();
-                SaveScore(finalTime, "Level1");
-                Debug.Log($"Poziom 1 ukończony! Czas: {finalTime:F2} sekundy");
+                SaveScore(finalTime, "Level2");
+                Debug.Log($"Poziom 2 ukończony! Czas: {finalTime:F2} sekundy");
             }
         }
     }

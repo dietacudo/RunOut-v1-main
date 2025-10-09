@@ -3,22 +3,27 @@ using TMPro;
 
 public class LeaderboardDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI[] scoreTexts; // Przeciągnij tu 3 pola tekstowe w inspectorze
+    [Header("Level 1 Scores")]
+    public TextMeshProUGUI[] level1ScoreTexts; // 3 pola tekstowe dla poziomu 1
+
+    [Header("Level 2 Scores")]
+    public TextMeshProUGUI[] level2ScoreTexts; // 3 pola tekstowe dla poziomu 2
 
     void Start()
     {
-        DisplayScores();
+        DisplayScores("Level1", level1ScoreTexts);
+        DisplayScores("Level2", level2ScoreTexts);
     }
 
-    void DisplayScores()
+    void DisplayScores(string levelKey, TextMeshProUGUI[] scoreTexts)
     {
         for (int i = 0; i < scoreTexts.Length; i++)
         {
-            float time = PlayerPrefs.GetFloat("BestTime" + i, float.MaxValue);
+            float time = PlayerPrefs.GetFloat(levelKey + "_BestTime" + i, float.MaxValue);
 
             if (time == float.MaxValue)
             {
-                scoreTexts[i].text = (i + 1) + ". ---";
+                scoreTexts[i].text = $"{i + 1}. ---";
             }
             else
             {

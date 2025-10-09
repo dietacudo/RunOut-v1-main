@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 766.00006, y: -1022}
+  m_AnchoredPosition: {x: 766.00006, y: -990}
   m_SizeDelta: {x: -1437.3555, y: 48.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &54015424
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd750aca65e2412488b1d3e178fdbc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSceneName: bartek scena
+  menuSceneName: LVL2
   fadeImage: {fileID: 1017696978}
   fadeDuration: 1
 --- !u!4 &2083896010
