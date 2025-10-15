@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 085db96d90d55d54091df342de6cf3f1
+guid: 9f6c15d7d1a55f8478aeea6bb8fedc8d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8272475595132877947
-    second: boulder 1_0
+      213: 3160708198012091835
+    second: track _0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boulder 1_0
+      name: track _0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 61
-        width: 292
-        height: 338
+        x: 0
+        y: 0
+        width: 924
+        height: 362
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58344039643423d80800000000000000
-      internalID: -8272475595132877947
+      spriteID: bbdfc252c571ddb20800000000000000
+      internalID: 3160708198012091835
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      boulder 1_0: -8272475595132877947
+      track _0: 3160708198012091835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
