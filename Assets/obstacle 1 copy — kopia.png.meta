@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40afa1b2f31777544b36f1c9b812b85d
+guid: 7f989fc81e91d4f41980be3ef4cdf932
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1430578613932109997
-    second: obstacle 1 copy_0
+      213: -8526102572587757055
+    second: "obstacle 1 copy \u2014 kopia_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: obstacle 1 copy_0
+      name: "obstacle 1 copy \u2014 kopia_0"
       rect:
         serializedVersion: 2
         x: 153
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da0b1ba7baf6ad310800000000000000
-      internalID: 1430578613932109997
+      spriteID: 102dc5a22e23da980800000000000000
+      internalID: -8526102572587757055
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      obstacle 1 copy_0: 1430578613932109997
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
