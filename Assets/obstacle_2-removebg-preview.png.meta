@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      obstacle_2-removebg-preview_0: -1010817589565992977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

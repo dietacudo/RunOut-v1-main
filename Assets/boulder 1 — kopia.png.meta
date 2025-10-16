@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "boulder 1 \u2014 kopia_0": 2143298878409820336
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
