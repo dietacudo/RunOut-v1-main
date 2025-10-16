@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuTworcy.unity
     guid: 8856ec40e34c7a74a96c3d0c1cfb5c57
   - enabled: 1
+    path: Assets/Scenes/MainMenuMichal.unity
+    guid: 3ab5b2ef4f1fb3c44bb8616cd104ba55
+  - enabled: 1
+    path: Assets/Scenes/MainMenuBartosz.unity
+    guid: fe4ba06fb9b9c774e88c5a029896ea66
+  - enabled: 1
     path: Assets/Scenes/MainMenuLVL.unity
     guid: 913a8a7d771c886418af7b06e02168a2
   - enabled: 1
