@@ -4,11 +4,17 @@ using TMPro;
 
 public class BallReset : MonoBehaviour
 {
+    [Header("UI")]
     public TextMeshProUGUI deathMessageText;
     public TextMeshProUGUI deathCounterText;
 
+    [Header("Audio")]
+    public AudioSource ballAudio;      // AudioSource kuli, który zatrzymujemy przy śmierci
+    public AudioSource audioSource;    // AudioSource do odtwarzania dźwięku śmierci
+    public AudioClip deathClip;        // Clip dźwięku śmierci gracza
+
     private bool gameOver = false;
-    private static int deathCount = 0; // 🔥 static = nie resetuje się przy zmianie sceny
+    private static int deathCount = 0; // licznik śmierci, nie resetuje się przy zmianie sceny
 
     private void Start()
     {
@@ -19,11 +25,19 @@ public class BallReset : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Zwiększenie licznika śmierci
+            // 1️⃣ Zatrzymanie dźwięku kuli
+            if (ballAudio != null)
+                ballAudio.Stop();
+
+            // 2️⃣ Odtwarzanie dźwięku śmierci gracza
+            if (audioSource != null && deathClip != null)
+                audioSource.PlayOneShot(deathClip);
+
+            // 3️⃣ Zwiększenie licznika śmierci
             deathCount++;
             UpdateDeathCounterUI();
 
-            // Wyświetlenie komunikatu o śmierci
+            // 4️⃣ Wyświetlenie komunikatu o śmierci i zatrzymanie gry
             ShowDeathMessage();
         }
     }

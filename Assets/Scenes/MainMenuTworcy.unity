@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 60010267}
   - component: {fileID: 60010266}
   - component: {fileID: 60010265}
+  - component: {fileID: 60010269}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -265,6 +266,150 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60010263}
   m_CullTransparentMesh: 1
+--- !u!114 &60010269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60010263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feeb2bafa4bee24e8c334d0c3ba56cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 319751952}
+  clickClip: {fileID: 0}
+  sceneToLoad: 
+--- !u!1 &319751951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319751953}
+  - component: {fileID: 319751952}
+  m_Layer: 0
+  m_Name: UIAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &319751952
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319751951}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 81be655fefb7cb849a21ce50793b6e9c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 81be655fefb7cb849a21ce50793b6e9c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &319751953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319751951}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 579.6549, y: 504.1991, z: -692.98627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &353814617
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c8fe59cfba5c04a8f1ee95253ec9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickClip: {fileID: 8300000, guid: dadc236c0e60c004b9c639c8c1cc4fbc, type: 3}
 --- !u!4 &1171430383
 Transform:
   m_ObjectHideFlags: 0
@@ -1021,6 +1167,7 @@ GameObject:
   - component: {fileID: 1686593659}
   - component: {fileID: 1686593658}
   - component: {fileID: 1686593657}
+  - component: {fileID: 1686593661}
   m_Layer: 5
   m_Name: "Micha\u0142 Mo\u015Bci\u0144ski"
   m_TagString: Untagged
@@ -1154,6 +1301,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686593655}
   m_CullTransparentMesh: 1
+--- !u!114 &1686593661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686593655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feeb2bafa4bee24e8c334d0c3ba56cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 319751952}
+  clickClip: {fileID: 0}
+  sceneToLoad: 
 --- !u!1 &1760918476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1783,7 @@ GameObject:
   - component: {fileID: 1970714620}
   - component: {fileID: 1970714619}
   - component: {fileID: 1970714618}
+  - component: {fileID: 1970714622}
   m_Layer: 5
   m_Name: Kacper Staszewski
   m_TagString: Untagged
@@ -1754,6 +1917,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970714616}
   m_CullTransparentMesh: 1
+--- !u!114 &1970714622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970714616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feeb2bafa4bee24e8c334d0c3ba56cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 319751952}
+  clickClip: {fileID: 0}
+  sceneToLoad: 
 --- !u!1 &1979750668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,6 +2022,7 @@ GameObject:
   - component: {fileID: 2144137095}
   - component: {fileID: 2144137094}
   - component: {fileID: 2144137093}
+  - component: {fileID: 2144137097}
   m_Layer: 5
   m_Name: "Bartosz G\u0142asek"
   m_TagString: Untagged
@@ -1977,6 +2156,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144137091}
   m_CullTransparentMesh: 1
+--- !u!114 &2144137097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144137091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feeb2bafa4bee24e8c334d0c3ba56cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 319751952}
+  clickClip: {fileID: 0}
+  sceneToLoad: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1985,3 +2179,4 @@ SceneRoots:
   - {fileID: 1139143925}
   - {fileID: 1171430383}
   - {fileID: 353814620}
+  - {fileID: 319751953}
