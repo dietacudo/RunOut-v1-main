@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd750aca65e2412488b1d3e178fdbc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSceneName: bartek scena
+  menuSceneName: LVL3
   fadeImage: {fileID: 1722518044}
   fadeDuration: 1
 --- !u!4 &287168951

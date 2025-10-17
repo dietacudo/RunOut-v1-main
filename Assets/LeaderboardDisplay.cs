@@ -9,10 +9,14 @@ public class LeaderboardDisplay : MonoBehaviour
     [Header("Level 2 Scores")]
     public TextMeshProUGUI[] level2ScoreTexts; // 3 pola tekstowe dla poziomu 2
 
+    [Header("Level 3 Scores")]
+    public TextMeshProUGUI[] level3ScoreTexts; // 3 pola tekstowe dla poziomu 3
+
     void Start()
     {
         DisplayScores("Level1", level1ScoreTexts);
         DisplayScores("Level2", level2ScoreTexts);
+        DisplayScores("Level3", level3ScoreTexts);
     }
 
     void DisplayScores(string levelKey, TextMeshProUGUI[] scoreTexts)
