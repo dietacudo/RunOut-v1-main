@@ -539,8 +539,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 81be655fefb7cb849a21ce50793b6e9c, type: 3}
-  m_Resource: {fileID: 8300000, guid: 81be655fefb7cb849a21ce50793b6e9c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 38f5208a05e6886479a50fbd6627b6ec, type: 3}
+  m_Resource: {fileID: 8300000, guid: 38f5208a05e6886479a50fbd6627b6ec, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c8fe59cfba5c04a8f1ee95253ec9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickClip: {fileID: 8300000, guid: dadc236c0e60c004b9c639c8c1cc4fbc, type: 3}
+  clickClip: {fileID: 8300000, guid: 141d90ee2341c6c4194547a46b7b4e7c, type: 3}
 --- !u!4 &1749977196
 Transform:
   m_ObjectHideFlags: 0

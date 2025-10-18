@@ -151,6 +151,8 @@ MonoBehaviour:
   menuSceneName: MainMenu
   fadeImage: {fileID: 462758922}
   fadeDuration: 1
+  clickClip: {fileID: 8300000, guid: 0b0cb1bf097cffc4598181ba8b71f2e0, type: 3}
+  delayBeforeLoad: 0.3
 --- !u!4 &361977883
 Transform:
   m_ObjectHideFlags: 0

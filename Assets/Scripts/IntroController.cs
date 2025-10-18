@@ -5,9 +5,16 @@ using System.Collections;
 
 public class IntroController : MonoBehaviour
 {
-    [SerializeField] private string menuSceneName = "MainMenu"; 
-    [SerializeField] private Image fadeImage; // czarny obraz na pełny ekran
-    [SerializeField] private float fadeDuration = 1f; // czas trwania efektu
+    [Header("Scena docelowa")]
+    [SerializeField] private string menuSceneName = "MainMenu";
+
+    [Header("Efekt przejścia")]
+    [SerializeField] private Image fadeImage; 
+    [SerializeField] private float fadeDuration = 1f;
+
+    [Header("Dźwięk")]
+    [SerializeField] private AudioClip clickClip; // dźwięk przy naciśnięciu spacji
+    [SerializeField] private float delayBeforeLoad = 0.3f; // czas na zagranie dźwięku
 
     private bool isFading = false;
 
@@ -23,10 +30,19 @@ public class IntroController : MonoBehaviour
     {
         isFading = true;
 
+        // 🔊 Odtworzenie dźwięku
+        if (clickClip != null && Camera.main != null)
+        {
+            AudioSource.PlayClipAtPoint(clickClip, Camera.main.transform.position);
+        }
+
+        // 🔥 Czekamy chwilę, żeby dźwięk był słyszalny zanim zacznie się fade
+        yield return new WaitForSeconds(delayBeforeLoad);
+
         float t = 0f;
         Color color = fadeImage.color;
 
-        // stopniowe przyciemnianie
+        // 🎬 Stopniowe przyciemnianie ekranu
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
@@ -35,6 +51,7 @@ public class IntroController : MonoBehaviour
             yield return null;
         }
 
+        // 🔁 Po zakończeniu fade'a – zmiana sceny
         SceneManager.LoadScene(menuSceneName);
     }
 }
