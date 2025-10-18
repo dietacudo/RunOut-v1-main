@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "level 1 column \u2014 kopia_0": 6914115674553459013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
