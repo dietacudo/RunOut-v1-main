@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverSound: {fileID: 962301506}
-  clickClip: {fileID: 0}
+  clickClip: {fileID: 8300000, guid: f93965132fffa354983d1ad324235b28, type: 3}
   sceneToLoad: 
 --- !u!114 &780569398
 MonoBehaviour:
@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverSound: {fileID: 962301506}
-  clickClip: {fileID: 0}
+  clickClip: {fileID: 8300000, guid: f93965132fffa354983d1ad324235b28, type: 3}
   sceneToLoad: 
 --- !u!114 &1113639730
 MonoBehaviour:
