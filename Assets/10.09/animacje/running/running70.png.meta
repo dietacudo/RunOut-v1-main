@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e8d09efaace170546bca08e31dd1cd1c
+guid: a86e06da42dc7e94ca92d28786e21fbf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7155921495886248211
-    second: Level 2 rocks popr_0
+      213: -5834000498447659401
+    second: running70_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Level 2 rocks popr_0
+      name: running70_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1536
-        height: 141
+        width: 768
+        height: 768
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 319b1e2dfa0fe4360800000000000000
-      internalID: 7155921495886248211
+      spriteID: 77e439ed477790fa0800000000000000
+      internalID: -5834000498447659401
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Level 2 rocks popr_0: 7155921495886248211
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
