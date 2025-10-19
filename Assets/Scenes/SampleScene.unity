@@ -1832,8 +1832,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2009414043
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 9220313828243347196, guid: a2e131c33b9e5e1419433c5f7d15ad64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16700,8 +16700,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2009414043
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 9220313828243347196, guid: a2e131c33b9e5e1419433c5f7d15ad64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25274,8 +25274,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2009414043
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!224 &1412186915222615052
@@ -27042,8 +27042,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2009414043
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &5564521386427574111
@@ -27799,7 +27799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.306, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.060699463, y: 0.94329834}
+  m_AnchoredPosition: {x: -0.3, y: 0.94329834}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7574286708951052177
