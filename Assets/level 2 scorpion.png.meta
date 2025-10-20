@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      level 2 scorpion_0: 9220759816278530298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,34 +2,41 @@ using UnityEngine;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
+    [Header("Ustawienia ruchu")]
     public float moveSpeed = 5f;        // Początkowa prędkość ruchu
-    public float maxMoveSpeed = 15f;   // Maksymalna prędkość ruchu
-    public float speedIncreaseRate = 0.5f;  // Ilość zwiększania prędkości na krok
-    public float speedDecayRate = 1f;  // Szybkość zmniejszania prędkości przy braku aktywności
+    public float maxMoveSpeed = 15f;    // Maksymalna prędkość ruchu
+    public float speedIncreaseRate = 0.5f;  // Ilość zwiększania prędkości na kliknięcie
+    public float speedDecayRate = 1f;       // Szybkość zmniejszania prędkości przy braku aktywności
 
+    [Header("Ustawienia skoku")]
     public float jumpForce = 10f;      // Siła skoku
-    public Transform groundCheck;     // Punkt sprawdzający kontakt z ziemią
+    public Transform groundCheck;      // Punkt sprawdzający kontakt z ziemią
     public float groundCheckRadius = 0.2f;  // Promień sprawdzania ziemi
-    public LayerMask groundLayer;     // Warstwa ziemi
+    public LayerMask groundLayer;      // Warstwa ziemi
 
-    private float currentMoveSpeed = 0f; // Aktualna prędkość ruchu
+    [Header("Ustawienia zanikania prędkości")]
+    public float decayDelay = 1f;          // Czas bezczynności przed zmniejszaniem prędkości
+
+    private float currentMoveSpeed = 0f;   // Aktualna prędkość ruchu
     public float CurrentMoveSpeed => currentMoveSpeed; // Właściwość tylko do odczytu
 
     private Rigidbody2D rb;
-    private bool isGrounded;          // Czy postać dotyka ziemi
+    private Animator animator;             // Animator postaci
+    private bool isGrounded;               // Czy postać dotyka ziemi
 
     private bool wasLeftShiftLast = false; // Flaga, czy ostatni ruch był wykonany lewym Shiftem
     private float lastInputTime = 0f;      // Czas ostatniego poprawnego kliknięcia
-    public float decayDelay = 1f;          // Czas bezczynności przed zmniejszaniem prędkości
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentMoveSpeed = 0f; // Na początku postać jest nieruchoma
+        animator = GetComponent<Animator>(); // Pobierz Animator
 
-        // Ustawienia Rigidbody2D dla poprawnych kolizji
-        rb.gravityScale = 3f; // Ustawiona siła grawitacji
-        rb.freezeRotation = true; // Zablokowanie rotacji, aby postać się nie przewracała
+        currentMoveSpeed = 0f;
+
+        // Ustawienia fizyki
+        rb.gravityScale = 3f;
+        rb.freezeRotation = true;
     }
 
     void Update()
@@ -37,18 +44,17 @@ public class PlayerControllerV2 : MonoBehaviour
         // Sprawdzanie, czy postać dotyka ziemi
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        // Sprawdź naciśnięcie lewego Shifta
+        // Obsługa zwiększania prędkości
         if (Input.GetKeyDown(KeyCode.LeftShift) && !wasLeftShiftLast)
         {
-            wasLeftShiftLast = true; // Lewy Shift jako ostatni
-            IncreaseSpeed();         // Zwiększ prędkość
+            wasLeftShiftLast = true;
+            IncreaseSpeed();
         }
 
-        // Sprawdź naciśnięcie prawego Shifta
         if (Input.GetKeyDown(KeyCode.RightShift) && wasLeftShiftLast)
         {
-            wasLeftShiftLast = false; // Prawy Shift jako ostatni
-            IncreaseSpeed();          // Zwiększ prędkość
+            wasLeftShiftLast = false;
+            IncreaseSpeed();
         }
 
         // Zmniejsz prędkość, jeśli gracz nie jest aktywny
@@ -57,20 +63,31 @@ public class PlayerControllerV2 : MonoBehaviour
             DecaySpeed();
         }
 
-        // Obsługa skoku
+        // Skok
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
+        }
+
+        // Przekazanie prędkości do Animatora (do sterowania animacjami idle/run)
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", currentMoveSpeed);
         }
     }
 
     void FixedUpdate()
     {
-        // Poruszaj gracza w osi X
+        // Ruch w osi X tylko jeśli prędkość > 0
         if (currentMoveSpeed > 0f)
         {
             Vector2 newVelocity = new Vector2(currentMoveSpeed, rb.linearVelocity.y);
-            rb.linearVelocity = newVelocity; // Zastosuj ruch z uwzględnieniem fizyki
+            rb.linearVelocity = newVelocity;
+        }
+        else
+        {
+            // Jeśli prędkość = 0, zatrzymaj postać
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }
 
@@ -78,7 +95,7 @@ public class PlayerControllerV2 : MonoBehaviour
     void IncreaseSpeed()
     {
         currentMoveSpeed = Mathf.Min(currentMoveSpeed + speedIncreaseRate, maxMoveSpeed);
-        lastInputTime = Time.time; // Zaktualizuj czas ostatniego kliknięcia
+        lastInputTime = Time.time;
     }
 
     // Zmniejsz prędkość ruchu przy braku aktywności
@@ -87,13 +104,13 @@ public class PlayerControllerV2 : MonoBehaviour
         currentMoveSpeed = Mathf.Max(currentMoveSpeed - speedDecayRate * Time.deltaTime, 0f);
     }
 
-    // Funkcja odpowiedzialna za skok
+    // Skok
     void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // Dodaj siłę w osi Y, zachowując aktualną prędkość w osi X
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
-    // Rysowanie debugowego okręgu do wizualizacji sprawdzania ziemi
+    // Wizualizacja zasięgu sprawdzania ziemi w edytorze
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
