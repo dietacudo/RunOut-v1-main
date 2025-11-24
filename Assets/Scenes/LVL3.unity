@@ -21906,7 +21906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3082a64017878884782414d3aa68f5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   direction: {x: 1, y: 0}
   loop: 0
   resetX: -10
@@ -22041,7 +22041,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 4a480323f8cf8494abd5fc936a61358e, type: 3}
   m_Resource: {fileID: 8300000, guid: 4a480323f8cf8494abd5fc936a61358e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.81
+  m_Volume: 0.512
   m_Pitch: 1
   Loop: 0
   Mute: 0
