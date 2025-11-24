@@ -8,7 +8,10 @@ public class MenuController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        if(clickClip != null)
+        // Najważniejsze — odblokowujemy czas
+        Time.timeScale = 1f;
+
+        if (clickClip != null)
             StartCoroutine(LoadSceneAfterClick(sceneName));
         else
             SceneManager.LoadScene(sceneName); // fallback jeśli brak dźwięku
@@ -19,8 +22,8 @@ public class MenuController : MonoBehaviour
         // odtwórz dźwięk
         AudioSource.PlayClipAtPoint(clickClip, Camera.main.transform.position);
 
-        // poczekaj chwilę, żeby dźwięk zdążył zagrać
-        yield return new WaitForSeconds(0.2f);
+        // musi być Realtime, inaczej nie działa w pauzie!
+        yield return new WaitForSecondsRealtime(0.2f);
 
         // zmiana sceny
         SceneManager.LoadScene(sceneName);
