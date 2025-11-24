@@ -1,118 +1,172 @@
 using UnityEngine;
-using TMPro; // Import TextMeshPro
+using TMPro;
 
 public class ObstacleSlideInteraction : MonoBehaviour
 {
-    public TextMeshPro buttonPromptText; // Zmieniamy na TextMeshPro (dla 3D)
-    public float reactionTime = 2f; // Czas na reakcję w sekundach
-    private float timer; // Licznik czasu
-    private string currentPrompt; // Aktualnie wyświetlany przycisk
-    private bool isNearObstacle = false; // Czy gracz jest blisko przeszkody
-    private Rigidbody2D playerRb; // Rigidbody gracza, potrzebne do wślizgu
-    public float slideForce = 5f; // Siła wślizgu
+    [Header("UI")]
+    public TMP_Text buttonPromptText;
+    public float reactionTime = 2f;
 
-    private Animator playerAnimator; // Referencja do Animatora gracza
-    private bool hasSlid = false; // Zapobiega wielokrotnym wślizgom
+    [Header("Slide")]
+    public float slideForce = 5f;
+    public float reducedHeight = 0.5f;
+    public float reducedOffset = 0.25f;
+    public float resetTime = 1f; // czas po którym collider wraca
 
-    private CapsuleCollider2D playerCollider; // Kolider gracza (CapsuleCollider2D)
-    public float reducedHeight = 0.5f; // Zmniejszenie wysokości kolidera podczas wślizgu
-    public float reducedOffset = 0.25f; // Offset do dopasowania kolidera w dół
-    private Vector2 originalColliderSize; // Oryginalny rozmiar kolidera
-    private Vector2 originalColliderOffset; // Oryginalny offset kolidera
+    private float timer;
+    private string currentPrompt;
+    private bool isNearObstacle = false;
+    private Rigidbody2D playerRb;
+    private Animator playerAnimator;
+    private bool hasSlid = false;
 
-    public float resetTime = 1f; // Czas po wślizgu, po którym kolider wraca do oryginalnych rozmiarów
+    private CapsuleCollider2D playerCollider;
+    private Vector2 originalColliderSize;
+    private Vector2 originalColliderOffset;
 
     void Start()
     {
-        buttonPromptText.gameObject.SetActive(false); // Na początku przycisk jest ukryty
-        GameObject player = GameObject.FindWithTag("Player"); // Znajdź gracza
-        playerRb = player.GetComponent<Rigidbody2D>(); // Pobierz Rigidbody gracza
-        playerAnimator = player.GetComponent<Animator>(); // Pobierz Animator gracza
-        playerCollider = player.GetComponent<CapsuleCollider2D>(); // Pobierz CapsuleCollider2D gracza
+        if (buttonPromptText != null) buttonPromptText.gameObject.SetActive(false);
 
-        // Zapisz oryginalny rozmiar i offset kolidera
-        originalColliderSize = playerCollider.size;
-        originalColliderOffset = playerCollider.offset;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            playerRb = player.GetComponent<Rigidbody2D>();
+            playerAnimator = player.GetComponent<Animator>();
+            playerCollider = player.GetComponent<CapsuleCollider2D>();
+        }
+
+        if (playerCollider != null)
+        {
+            originalColliderSize = playerCollider.size;
+            originalColliderOffset = playerCollider.offset;
+        }
+
+        // Upewnij się, że reakcje na starcie są odblokowane
+        ReactionLock.Unlock();
     }
 
     void Update()
     {
-        if (isNearObstacle)
+        if (!isNearObstacle) return;
+
+        if (ReactionLock.Locked)
         {
-            timer -= Time.deltaTime; // Zmniejszanie czasu
-
-            if (timer <= 0f && !hasSlid) // Jeśli czas minął, a gracz nie wykonał wślizgu
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
             {
-                buttonPromptText.gameObject.SetActive(false); // Ukryj przycisk
-                isNearObstacle = false;
-                hasSlid = false; // Resetuje flagę
-                // Możesz dodać inne konsekwencje np. uderzenie w przeszkodę
+                HidePromptReset();
             }
-
-            // Sprawdzanie, czy gracz nacisnął odpowiedni przycisk
-            if ((currentPrompt == "Q" && Input.GetKeyDown(KeyCode.Q)) ||
-                (currentPrompt == "W" && Input.GetKeyDown(KeyCode.W)) ||
-                (currentPrompt == "E" && Input.GetKeyDown(KeyCode.E)) ||
-                (currentPrompt == "A" && Input.GetKeyDown(KeyCode.A)) ||
-                (currentPrompt == "S" && Input.GetKeyDown(KeyCode.S)) ||
-                (currentPrompt == "D" && Input.GetKeyDown(KeyCode.D)))
-            {
-                PerformSlide(); // Gracz nacisnął przycisk na czas
-            }
+            return;
         }
+
+        timer -= Time.deltaTime;
+        if (timer <= 0f && !hasSlid)
+        {
+            HidePromptReset();
+            return;
+        }
+
+        bool q = Input.GetKeyDown(KeyCode.Q);
+        bool w = Input.GetKeyDown(KeyCode.W);
+        bool e = Input.GetKeyDown(KeyCode.E);
+        bool a = Input.GetKeyDown(KeyCode.A);
+        bool s = Input.GetKeyDown(KeyCode.S);
+        bool d = Input.GetKeyDown(KeyCode.D);
+
+        bool any = q || w || e || a || s || d;
+        if (!any) return;
+
+        string pressed = q ? "Q" : w ? "W" : e ? "E" : a ? "A" : s ? "S" : "D";
+
+        if (pressed == currentPrompt)
+        {
+            PerformSlide();
+        }
+        else
+        {
+            ReactionLock.Lock();
+
+            if (buttonPromptText != null)
+            {
+                buttonPromptText.text = "Wrong!";
+            }
+
+            isNearObstacle = false;
+            hasSlid = false;
+
+            if (buttonPromptText != null) Invoke(nameof(HidePromptImmediate), 0.5f);
+
+            // Możesz tu też wywołać śmierć gracza, jeśli chcesz natychmiastowy efekt.
+        }
+    }
+
+    private void HidePromptImmediate()
+    {
+        if (buttonPromptText != null) buttonPromptText.gameObject.SetActive(false);
+    }
+
+    private void HidePromptReset()
+    {
+        if (buttonPromptText != null) buttonPromptText.gameObject.SetActive(false);
+        isNearObstacle = false;
+        hasSlid = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Sprawdzenie, czy to gracz
-        {
-            isNearObstacle = true;
-            timer = reactionTime; // Resetowanie czasu na 2 sekundy
-            currentPrompt = GetRandomButton(); // Losowanie przycisku
-            ShowButtonPrompt(currentPrompt); // Pokazanie przycisku
-        }
+        if (!other.CompareTag("Player")) return;
+        if (ReactionLock.Locked) return;
+
+        isNearObstacle = true;
+        timer = reactionTime;
+        currentPrompt = GetRandomButton();
+        ShowButtonPrompt(currentPrompt);
     }
 
     private string GetRandomButton()
     {
-        string[] buttonPrompts = { "Q", "W", "E", "A", "S", "D" }; // Możliwe przyciski
+        string[] buttonPrompts = { "Q", "W", "E", "A", "S", "D" };
         return buttonPrompts[Random.Range(0, buttonPrompts.Length)];
     }
 
     private void ShowButtonPrompt(string prompt)
     {
-        buttonPromptText.text = "Press " + prompt + " to slide!"; // Zmieniony komunikat na "slide"
-        buttonPromptText.gameObject.SetActive(true); // Pokazanie przycisku
+        if (buttonPromptText == null) return;
+        buttonPromptText.text = "Press " + prompt + " to slide!";
+        buttonPromptText.gameObject.SetActive(true);
     }
 
     private void PerformSlide()
     {
-        if (hasSlid) return; // Zapobieganie wielokrotnemu wślizgowi
-        hasSlid = true; // Ustaw flagę wślizgu
-        buttonPromptText.gameObject.SetActive(false); // Ukrycie przycisku
-        isNearObstacle = false; // Gracz wykonał akcję
+        if (hasSlid) return;
+        hasSlid = true;
 
-        // Wyzwól animację wślizgu
-        if (playerAnimator != null)
+        if (buttonPromptText != null) buttonPromptText.gameObject.SetActive(false);
+        isNearObstacle = false;
+
+        if (playerAnimator != null) playerAnimator.SetTrigger("Slide");
+
+        if (playerCollider != null)
         {
-            playerAnimator.SetTrigger("Slide");
+            playerCollider.size = new Vector2(originalColliderSize.x, reducedHeight);
+            playerCollider.offset = new Vector2(originalColliderOffset.x, reducedOffset);
         }
 
-        // Zmiana kolidera na mniejszy podczas wślizgu
-        playerCollider.size = new Vector2(originalColliderSize.x, reducedHeight); // Zmniejsz wysokość
-        playerCollider.offset = new Vector2(originalColliderOffset.x, reducedOffset); // Dopasuj offset w dół (przesunięcie górnej części kolidera)
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0f);
+            // Dodajemy pchnięcie w prawo; jeśli chcesz kierunek ruchu, rozważ użyć transform.right * slideForce
+            playerRb.AddForce(Vector2.right * slideForce, ForceMode2D.Impulse);
+        }
 
-        // Wślizg za pomocą Rigidbody2D
-        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, 0); // Ustalamy prędkość pionową na 0
-        playerRb.AddForce(Vector2.right * slideForce, ForceMode2D.Impulse); // Dodajemy siłę w prawo
-
-        // Przywrócenie kolidera do oryginalnych rozmiarów po czasie
-        Invoke("ResetCollider", resetTime); // Przywrócenie kolidera po upływie czasu
+        // Przywróć collider po czasie
+        Invoke(nameof(ResetCollider), resetTime);
     }
 
-    // Przywrócenie kolidera do oryginalnych rozmiarów
     private void ResetCollider()
     {
+        if (playerCollider == null) return;
         playerCollider.size = originalColliderSize;
         playerCollider.offset = originalColliderOffset;
     }

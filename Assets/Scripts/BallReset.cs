@@ -19,6 +19,7 @@ public class BallReset : MonoBehaviour
     private void Start()
     {
         UpdateDeathCounterUI();
+        if (deathMessageText != null) deathMessageText.text = "";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,7 +46,7 @@ public class BallReset : MonoBehaviour
     private void ShowDeathMessage()
     {
         Time.timeScale = 0f; // zatrzymanie gry
-        deathMessageText.text = "You Died! Press SPACE to Retry";
+        if (deathMessageText != null) deathMessageText.text = "You Died! Press SPACE to Retry";
         gameOver = true;
     }
 
@@ -53,17 +54,21 @@ public class BallReset : MonoBehaviour
     {
         if (gameOver && Input.GetKeyDown(KeyCode.Space))
         {
+            // Najpierw odblokowujemy reakcje (ReactionLock) żeby po respawnie grac mógł znów reagować
+            ReactionLock.Unlock();
+
             // Reset sceny
+            Time.timeScale = 1f; // przywrócenie czasu PRZED reloadem (bez tego niektóre rzeczy mogą zostać zatrzymane)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-            Time.timeScale = 1f; // przywrócenie czasu
             gameOver = false;
         }
     }
 
     private void UpdateDeathCounterUI()
     {
-        deathCounterText.text = "Deaths: " + deathCount;
+        if (deathCounterText != null)
+            deathCounterText.text = "Deaths: " + deathCount;
     }
 
     // 🔥 Funkcja do resetowania licznika (np. w menu)
