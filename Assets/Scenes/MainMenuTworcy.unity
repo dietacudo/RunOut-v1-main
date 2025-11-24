@@ -1250,19 +1250,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1686593659}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1171430382}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MainMenuMichal
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1686593659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1866,19 +1854,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1970714620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1171430382}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MainMenuKacper
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1970714620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2105,19 +2081,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2144137095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1171430382}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MainMenuBartosz
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2144137095
 MonoBehaviour:
   m_ObjectHideFlags: 0
